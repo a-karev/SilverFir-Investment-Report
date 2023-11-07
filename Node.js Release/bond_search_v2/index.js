@@ -39,15 +39,15 @@ module.exports.start = start;
  */
 
 async function MOEXsearchBonds() { //поиск облигаций по параметрам
-    const YieldMore = 7 //Доходность больше этой цифры
-    const YieldLess = 40 //Доходность меньше этой цифры
-    const PriceMore = 60 //Цена больше этой цифры
-    const PriceLess = 110 //Цена меньше этой цифры
-    const DurationMore = 6 //Дюрация больше этой цифры
-    const DurationLess = 13 //Дюрация меньше этой цифры
-    const VolumeMore = 400 //Объем сделок в каждый из n дней, шт. больше этой цифры
-    const BondVolumeMore = 10000 // Совокупный объем сделок за n дней, шт. больше этой цифры
-    const OfferYesNo = "ДА" //Учитывать, чтобы денежные выплаты были известны до самого погашения? 
+    const YieldMore = process.env.YieldMore || '7' //Доходность больше этой цифры
+    const YieldLess = process.env.YieldLess || '40' //Доходность меньше этой цифры
+    const PriceMore = process.env.PriceMore || '60' //Цена больше этой цифры
+    const PriceLess = process.env.PriceLess || '110' //Цена меньше этой цифры
+    const DurationMore = process.env.DurationMore || '6'  //Дюрация больше этой цифры
+    const DurationLess = process.env.DurationLess || '13' //Дюрация меньше этой цифры
+    const VolumeMore = process.env.VolumeMore || '400' //Объем сделок в каждый из n дней, шт. больше этой цифры
+    const BondVolumeMore = process.env.BondVolumeMore || '10000' // Совокупный объем сделок за n дней, шт. больше этой цифры
+    const OfferYesNo = (process.env.OfferYesNo || "NO") == "YES" ? "ДА" : "НЕТ" //Учитывать, чтобы денежные выплаты были известны до самого погашения? 
     // ДА - облигации только с известными цифрами выплаты купонов
     // НЕТ - не важно, пусть в какие-то даты вместо выплаты прочерк
     const conditions = `<li>${YieldMore}% < Доходность < ${YieldLess}%</li>
