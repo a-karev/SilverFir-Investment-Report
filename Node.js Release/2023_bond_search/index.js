@@ -408,4 +408,3 @@ function makeTableHTML(bonds) { //генерируем html таблицу из 
 function getFunctionName() { //автоматически получаем имя функции
     return (new Error()).stack.split('\n')[2].split(' ')[5];
 }
-==== BASE ====
